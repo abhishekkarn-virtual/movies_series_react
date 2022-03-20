@@ -1,0 +1,12 @@
+.tile{
+    background-color: grey;
+    width: 120px;
+    height:200px;
+    margin:10px;
+    display:block-inline;
+}
+
+.tile h3{
+    padding:5px 0;
+
+}

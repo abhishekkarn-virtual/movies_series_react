@@ -1,0 +1,13 @@
+.container{
+    margin:0;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 15px;
+    text-align: center;
+}
+
+.tile{
+    background-color: whitesmoke;
+    margin:15px;
+    flex: 10%;
+}

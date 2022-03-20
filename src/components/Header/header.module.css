@@ -1,0 +1,18 @@
+ .head h1{
+    color:white;
+    display:inline;
+    font-weight: 500;
+    font-size: 2rem;
+    padding-left: 6rem;
+}
+
+li{
+    display:inline-block;
+    color:white
+}
+
+.head{
+    background-color: blue;
+    margin:0
+}
+
