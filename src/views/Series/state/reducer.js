@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getMovies } from "./service";
+import { getSeries } from "./service";
 
-export const getMoviesAction=createAsyncThunk("movies/getAction",async(_,{rejectWithValue})=>{
+export const getSeriesAction=createAsyncThunk("series/getAction",async(_,{rejectWithValue})=>{
 
  try{
-        const data =await getMovies();
+        const data =await getSeries();
         return data;
     }catch(err){
         return rejectWithValue(err);
@@ -15,26 +15,26 @@ const initialState={
     isPending:false
 }
 
- const MoviesReducer=createSlice({
+ const SeriesReducer=createSlice({
     name:"movies",
     initialState,
     reducers:{},
 
     extraReducers:(builder)=>{
-        builder.addCase(getMoviesAction.pending,(state)=>{
+        builder.addCase(getSeriesAction.pending,(state)=>{
             return {
                 isPending:true,
             }
         });
 
-        builder.addCase(getMoviesAction.fulfilled,(state,{payload})=>{
+        builder.addCase(getSeriesAction.fulfilled,(state,{payload})=>{
             console.log(payload);
             return {
                 resource :[...payload]
             }
         });
 
-        builder.addCase(getMoviesAction.rejected,()=>{
+        builder.addCase(getSeriesAction.rejected,()=>{
            return{
             errorMessage: "Some error "
            }
@@ -42,4 +42,4 @@ const initialState={
     }
 })
 
-export default MoviesReducer.reducer;
+export default SeriesReducer.reducer;

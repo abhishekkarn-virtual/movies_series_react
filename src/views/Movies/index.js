@@ -8,38 +8,47 @@ import { getMoviesAction } from "./state/reducer";
 import { useSelector } from 'react-redux';
 
 export const MoviesPage=()=>{
-    const Movies = Data.entries.filter((movie)=>{ return movie.programType === "movie"}).slice(0,21);
-    console.log(Movies);
+    // const Movies = Data.entries.filter((movie)=>{ return movie.programType === "movie"}).slice(0,21);
+    // console.log(Movies);
     const dispatch=useDispatch();
     useEffect(()=>{dispatch(getMoviesAction())},[])
 
     const state=useSelector(state=>state.movies);
 
     if("errorMessage" in state){
-        console.log("Error");
+      return(
+          <div>
+              Oops, something went wrong !
+          </div>
+      )
     }else if ("isPending" in state){
-        console.log("pending")
+      return(
+          <div>
+              Loading...
+          </div>
+      )
     }else if("resource" in state){
         console.log("Successfull");
+        return(
+            <>
+            <Header/>
+            <PageTitle title={"Movies"} />
+            <div className={classes.container}>
+                {
+                    state.resource.map((m)=>{
+                        return(
+                            <div className={classes.tile}>
+                                <img src={m.images["Poster Art"].url} width="150" height="300"></img>
+                            <h3>{m.title}</h3>
+                            </div>
+                        )
+                    })
+                }
+            </div>
+            </>
+        )
     }
 
 
-    return(
-        <>
-        <Header/>
-        <PageTitle title={"Movies"} />
-        <div className={classes.container}>
-            {
-                Movies.map((m)=>{
-                    return(
-                        <div className={classes.tile}>
-                            <img src={m.images["Poster Art"].url} width="150" height="300"></img>
-                        <h3>{m.title}</h3>
-                        </div>
-                    )
-                })
-            }
-        </div>
-        </>
-    )
+    
 }
